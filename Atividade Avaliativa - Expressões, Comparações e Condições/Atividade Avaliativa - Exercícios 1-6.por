@@ -123,26 +123,26 @@ valor_bhaskara = mat.potencia(b, 2.0)
 		escreva("\n", "Só mais um número: ", "\n", "R: ")
 		leia(numero_4_6)
 
-		se(numero_1_5 > numero_2_5) {
-     	 maior = numero_1_6
+		 se(numero_1_5 > numero_2_5) {
+     		 maior = numero_1_6
   		 }
-  	 	senao {
+  	 	 senao {
     		 maior = numero_2_6
   		 }
 
  	 	 se(numero_3_6 > maior) {
- 	     maior = numero_3_6
+ 	    	 maior = numero_3_6
  	 	 }
 	
  	 	 se(numero_4_6 > maior) {
- 	     maior = numero_4_6
+ 	     	 maior = numero_4_6
  	 	 }
 
  	  	escreva("\n", "O maior número dos que você me passou é o: ", maior, "\n")
 
   		 se(numero_1_6 == numero_2_6 e numero_2_6 == numero_3_6 e numero_3_6 == numero_4_6) {
-  	     escreva("\n", "Os quatro números são idênticos, portanto, não posso declarar que um é maior que outro.", "\n")
-   }
+  	        escreva("\n", "Os quatro números são idênticos, portanto, não posso declarar que um é maior que outro.", "\n")
+   		}
 
 	}
 }
