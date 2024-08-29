@@ -8,13 +8,13 @@ programa
 	
 	real numero_1_7, numero_2_7, numero_3_7, memoria
 		
-   		escreva("\n", "1: Me passa um número ae maninho: ", "\n", "R: ")
+   		escreva("\n", "7: Me passa um número ae maninho: ", "\n", "R: ")
    		leia(numero_1_7)
 
-  		escreva("\n", "2: Me passa mais um número ae maninho: ", "\n", "R: ")
+  		escreva("\n", "Me passa mais um número ae maninho: ", "\n", "R: ")
  	 	leia(numero_2_7)
 
- 	  	escreva("\n", "3: Me passa o último número ae maninho: ", "\n", "R: ")
+ 	  	escreva("\n", "Me passa o último número ae maninho: ", "\n", "R: ")
   		leia(numero_3_7)
 	
    se(numero_1_7 < numero_2_7) {
