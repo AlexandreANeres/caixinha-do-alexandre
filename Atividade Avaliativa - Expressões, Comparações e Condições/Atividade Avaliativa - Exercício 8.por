@@ -1,6 +1,7 @@
 programa
 {
-	inclua biblioteca Matematica --> mat
+	
+inclua biblioteca Matematica --> mat
 	
 	funcao inicio()
 	{
@@ -37,7 +38,7 @@ programa
 //responde ao primeiro "se"zinho
       
       senao {
-      	escreva("\n", "Esses números tornam impossível formar um triângulo, quebra tudo.", "\n")
+      	  escreva("\n", "Esses números tornam impossível formar um triângulo, quebra tudo.", "\n")
       }
       
 	}
