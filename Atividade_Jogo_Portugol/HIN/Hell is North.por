@@ -68,214 +68,23 @@ programa
 
 //COMEÇO DIÁLOGO
 
-	funcao escrever_1(cadeia texto) {
-
-		inteiro LarguraCaixaTexto, AlturaCaixaTexto, XCaixaTexto, YCaixaTexto
-    		inteiro LarguraImagem, AlturaImagem, XImagem, YImagem
-
-    		real posicao_textoX = 0.0
-    		real posicao_textoY = 0.0
-    		
-    		logico CaixaPreenchida, ArredondarPontasCaixa
-
-  			CaixaPreenchida = falso 
-    			ArredondarPontasCaixa = falso
-
-    			LarguraImagem = 960
-    			AlturaImagem = 540
-    			XImagem = (ScreenLenght - LarguraImagem) / 2
-   			YImagem = (ScreenHigh - AlturaImagem) / 2 - 100
-
-    			LarguraCaixaTexto = 960
-    			AlturaCaixaTexto = 150
-    			XCaixaTexto = (ScreenLenght - LarguraCaixaTexto) / 2
-    			YCaixaTexto = YImagem + AlturaImagem + 50
-		
-		para (inteiro i = 0; i < XCaixaTexto + 480; i = i + 25) {
-
-		inteiro XdoQuadradoInvisivel = XCaixaTexto
-		inteiro YdoQuadradoInvisivel = YCaixaTexto
-		
-		inteiro velocidadeDoQuadradoEmX = 10
-		inteiro velocidadeDoQuadradoEmY = 0
-
-		inteiro TamanhoDoQuadradoInvisivel = 0
-
-		desenhar_retangulo_texto()
-		desenhar_retangulo_imagem()
-		
-		XdoQuadradoInvisivel = XdoQuadradoInvisivel + velocidadeDoQuadradoEmX
-          YdoQuadradoInvisivel = YdoQuadradoInvisivel + velocidadeDoQuadradoEmY
-
-          	se(XdoQuadradoInvisivel + i + TamanhoDoQuadradoInvisivel / 2 > XCaixaTexto + 25
-             	e YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < YCaixaTexto
-             	e YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > YCaixaTexto)
-           	{
-               	velocidadeDoQuadradoEmX = -velocidadeDoQuadradoEmX
-            	}
-
-            	se (XdoQuadradoInvisivel + i  - TamanhoDoQuadradoInvisivel / 2 < XCaixaTexto + 25
-             	e YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < YCaixaTexto
-             	e YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > YCaixaTexto)
-            	{
-                	velocidadeDoQuadradoEmX = -velocidadeDoQuadradoEmX
-            	}
-
-            	//se (YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > ClientSize.Height / 2)
-            	//{
-               // 	velocidadeDoQuadradoEmY = -velocidadeDoQuadradoEmY
-            	//}
-
-            	//se (YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < -ClientSize.Height / 2)
-            	//{
-               // 	velocidadeDoQuadradoEmY = -velocidadeDoQuadradoEmY
-            	//}
-
-            	//se (XdoQuadradoInvisivel < -ClientSize.Width / 2 ou XdoQuadradoInvisivel > ClientSize.Width / 2)
-            	//{
-               //	XdoQuadradoInvisivel = 0
-               //	YdoQuadradoInvisivel = 0
-            	//}
-
-			g.definir_cor(ColorText)
-    		
-    			inteiro tamanhoTexto = 24
-    			
-        		g.definir_fonte_texto("Alef")
-       		g.definir_estilo_texto(falso, verdadeiro, falso)
-       	
-       		g.definir_tamanho_texto(tamanhoTexto)
-       		
-			g.desenhar_texto(XCaixaTexto + 20, YCaixaTexto + 25, texto)
-
-			inteiro Colisao_caixaX = 950 - i - XCaixaTexto + 478
-			inteiro Tamanho_Linha_caixa = 50
-
-			g.definir_cor(0xffffff)
-
-			g.desenhar_retangulo(XdoQuadradoInvisivel + i, YdoQuadradoInvisivel + 5, Colisao_caixaX, Tamanho_Linha_caixa, falso, verdadeiro)
-
-			
-            	
-		
-            	g.renderizar()
-
-            	u.aguarde(100)
-            	
-		}
-		
-		enquanto(tec.ler_tecla() != tec.TECLA_ENTER) { }
-	}
-
-	funcao escrever_2(cadeia texto) {
-
-		inteiro LarguraCaixaTexto, AlturaCaixaTexto, XCaixaTexto, YCaixaTexto
-    		inteiro LarguraImagem, AlturaImagem, XImagem, YImagem
-
-    		real posicao_textoX = 0.0
-    		real posicao_textoY = 0.0
-    		
-    		logico CaixaPreenchida, ArredondarPontasCaixa
-
-  			CaixaPreenchida = falso 
-    			ArredondarPontasCaixa = falso
-
-    			LarguraImagem = 960
-    			AlturaImagem = 540
-    			XImagem = (ScreenLenght - LarguraImagem) / 2
-   			YImagem = (ScreenHigh - AlturaImagem) / 2 - 100
-
-    			LarguraCaixaTexto = 960
-    			AlturaCaixaTexto = 150
-    			XCaixaTexto = (ScreenLenght - LarguraCaixaTexto) / 2
-    			YCaixaTexto = YImagem + AlturaImagem + 50
-		
-		para (inteiro i = 0; i < XCaixaTexto + 480; i = i + 25) {
-
-		inteiro XdoQuadradoInvisivel = XCaixaTexto
-		inteiro YdoQuadradoInvisivel = YCaixaTexto
-		
-		inteiro velocidadeDoQuadradoEmX = 10
-		inteiro velocidadeDoQuadradoEmY = 0
-
-		inteiro TamanhoDoQuadradoInvisivel = 0
-
-		desenhar_retangulo_texto()
-		desenhar_retangulo_imagem()
-		
-		XdoQuadradoInvisivel = XdoQuadradoInvisivel + velocidadeDoQuadradoEmX
-          YdoQuadradoInvisivel = YdoQuadradoInvisivel + velocidadeDoQuadradoEmY
-
-          	se(XdoQuadradoInvisivel + i + TamanhoDoQuadradoInvisivel / 2 > XCaixaTexto + 25
-             	e YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < YCaixaTexto
-             	e YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > YCaixaTexto)
-           	{
-               	velocidadeDoQuadradoEmX = -velocidadeDoQuadradoEmX
-            	}
-
-            	se (XdoQuadradoInvisivel + i  - TamanhoDoQuadradoInvisivel / 2 < XCaixaTexto + 25
-             	e YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < YCaixaTexto
-             	e YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > YCaixaTexto)
-            	{
-                	velocidadeDoQuadradoEmX = -velocidadeDoQuadradoEmX
-            	}
-
-            	//se (YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > ClientSize.Height / 2)
-            	//{
-               // 	velocidadeDoQuadradoEmY = -velocidadeDoQuadradoEmY
-            	//}
-
-            	//se (YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < -ClientSize.Height / 2)
-            	//{
-               // 	velocidadeDoQuadradoEmY = -velocidadeDoQuadradoEmY
-            	//}
-
-            	//se (XdoQuadradoInvisivel < -ClientSize.Width / 2 ou XdoQuadradoInvisivel > ClientSize.Width / 2)
-            	//{
-               //	XdoQuadradoInvisivel = 0
-               //	YdoQuadradoInvisivel = 0
-            	//}
-
-			g.definir_cor(ColorText)
-    		
-    			inteiro tamanhoTexto = 24
-    			
-        		g.definir_fonte_texto("Alef")
-       		g.definir_estilo_texto(falso, verdadeiro, falso)
-       	
-       		g.definir_tamanho_texto(tamanhoTexto)
-
-				g.desenhar_texto(XCaixaTexto + 20, YCaixaTexto + 65, texto)
-
-
-			inteiro Colisao_caixaX = 950 - i - XCaixaTexto + 478
-			inteiro Tamanho_Linha_caixa = 40
-
-			g.definir_cor(0xffffff)
-
-			g.desenhar_retangulo(XdoQuadradoInvisivel + i, YdoQuadradoInvisivel + 60, Colisao_caixaX, Tamanho_Linha_caixa, falso, verdadeiro)
-            	
-            	g.renderizar()
-
-            	u.aguarde(50)
-            	
-		}
-		
-		enquanto(tec.ler_tecla() != tec.TECLA_ENTER) { }
-	}
-
 	funcao dialogo()
 	{
-			//inicializar_caixas()
+			cadeia texto_linha_1
+			cadeia texto_linha_2
+			cadeia texto_linha_3
 			
+			texto_linha_1 = "Um trovão cai de fundo, a chuva é tão forte e inconcebível que suas pupilas..."
+			texto_linha_2 = "estremecem. Sente um calafrio subindo pela coluna."
+	
 			escrever_1("Pai... Perdoe-me, pois eu pequei.")
-			escrever_1("Um trovão cai de fundo, a chuva é tão forte e inconcebível que suas pupilas...")
-			escrever_2("estremecem.")
-			u.aguarde(300)
+			escreverXX(texto_linha_1, texto_linha_2)
 
-			escrever_2("Sente um calafrio subindo pela coluna.")
+			texto_linha_1 = "- O que te traz aqui me filho?  - O padre era um homem velho, robusto, "
+			texto_linha_2 = "carregava consigo uma barba grande e esbelta, significante de muitos "
+			texto_linha_3 = "anos de vida e sabedoria."
 
-    			enquanto (tec.ler_tecla() != tec.TECLA_ENTER) { }
+			escreverXXX(texto_linha_1, texto_linha_2, texto_linha_3)
 	}
 
 	funcao vazio background_transicao(){
@@ -496,6 +305,319 @@ programa
             	u.aguarde(100)
             	
 		}
+	}
+
+	funcao escrever_1(cadeia texto) {
+
+		inteiro LarguraCaixaTexto, AlturaCaixaTexto, XCaixaTexto, YCaixaTexto
+    		inteiro LarguraImagem, AlturaImagem, XImagem, YImagem
+
+    		real posicao_textoX = 0.0
+    		real posicao_textoY = 0.0
+    		
+    		logico CaixaPreenchida, ArredondarPontasCaixa
+
+  			CaixaPreenchida = falso 
+    			ArredondarPontasCaixa = falso
+
+    			LarguraImagem = 960
+    			AlturaImagem = 540
+    			XImagem = (ScreenLenght - LarguraImagem) / 2
+   			YImagem = (ScreenHigh - AlturaImagem) / 2 - 100
+
+    			LarguraCaixaTexto = 960
+    			AlturaCaixaTexto = 150
+    			XCaixaTexto = (ScreenLenght - LarguraCaixaTexto) / 2
+    			YCaixaTexto = YImagem + AlturaImagem + 50
+		
+		para (inteiro i = 0; i < XCaixaTexto + 480; i = i + 25) {
+
+		inteiro XdoQuadradoInvisivel = XCaixaTexto
+		inteiro YdoQuadradoInvisivel = YCaixaTexto
+		
+		inteiro velocidadeDoQuadradoEmX = 10
+		inteiro velocidadeDoQuadradoEmY = 0
+
+		inteiro TamanhoDoQuadradoInvisivel = 0
+
+		desenhar_retangulo_texto()
+		desenhar_retangulo_imagem()
+		
+		XdoQuadradoInvisivel = XdoQuadradoInvisivel + velocidadeDoQuadradoEmX
+          YdoQuadradoInvisivel = YdoQuadradoInvisivel + velocidadeDoQuadradoEmY
+
+          	se(XdoQuadradoInvisivel + i + TamanhoDoQuadradoInvisivel / 2 > XCaixaTexto + 25
+             	e YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < YCaixaTexto
+             	e YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > YCaixaTexto)
+           	{
+               	velocidadeDoQuadradoEmX = -velocidadeDoQuadradoEmX
+            	}
+
+            	se (XdoQuadradoInvisivel + i  - TamanhoDoQuadradoInvisivel / 2 < XCaixaTexto + 25
+             	e YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < YCaixaTexto
+             	e YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > YCaixaTexto)
+            	{
+                	velocidadeDoQuadradoEmX = -velocidadeDoQuadradoEmX
+            	}
+
+            	//se (YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > ClientSize.Height / 2)
+            	//{
+               // 	velocidadeDoQuadradoEmY = -velocidadeDoQuadradoEmY
+            	//}
+
+            	//se (YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < -ClientSize.Height / 2)
+            	//{
+               // 	velocidadeDoQuadradoEmY = -velocidadeDoQuadradoEmY
+            	//}
+
+            	//se (XdoQuadradoInvisivel < -ClientSize.Width / 2 ou XdoQuadradoInvisivel > ClientSize.Width / 2)
+            	//{
+               //	XdoQuadradoInvisivel = 0
+               //	YdoQuadradoInvisivel = 0
+            	//}
+
+			g.definir_cor(ColorText)
+    		
+    			inteiro tamanhoTexto = 24
+    			
+        		g.definir_fonte_texto("Alef")
+       		g.definir_estilo_texto(falso, verdadeiro, falso)
+       	
+       		g.definir_tamanho_texto(tamanhoTexto)
+       		
+			g.desenhar_texto(XCaixaTexto + 20, YCaixaTexto + 25, texto)
+
+			inteiro Colisao_caixaX = 950 - i - XCaixaTexto + 478
+			inteiro Tamanho_Linha_caixa = 50
+
+			g.definir_cor(0x000000)
+
+			g.desenhar_retangulo(XdoQuadradoInvisivel + i, YdoQuadradoInvisivel + 5, Colisao_caixaX, Tamanho_Linha_caixa, falso, verdadeiro)
+
+			
+            	
+		
+            	g.renderizar()
+
+            	u.aguarde(100)
+            	
+		}
+		
+		enquanto(tec.ler_tecla() != tec.TECLA_ENTER) { }
+	}
+
+	funcao escrever_2(cadeia texto, cadeia texto_linha_1) {
+
+		inteiro LarguraCaixaTexto, AlturaCaixaTexto, XCaixaTexto, YCaixaTexto
+    		inteiro LarguraImagem, AlturaImagem, XImagem, YImagem
+
+    		real posicao_textoX = 0.0
+    		real posicao_textoY = 0.0
+    		
+    		logico CaixaPreenchida, ArredondarPontasCaixa
+
+  			CaixaPreenchida = falso 
+    			ArredondarPontasCaixa = falso
+
+    			LarguraImagem = 960
+    			AlturaImagem = 540
+    			XImagem = (ScreenLenght - LarguraImagem) / 2
+   			YImagem = (ScreenHigh - AlturaImagem) / 2 - 100
+
+    			LarguraCaixaTexto = 960
+    			AlturaCaixaTexto = 150
+    			XCaixaTexto = (ScreenLenght - LarguraCaixaTexto) / 2
+    			YCaixaTexto = YImagem + AlturaImagem + 50
+		
+		para (inteiro i = 0; i < XCaixaTexto + 480; i = i + 25) {
+
+		inteiro XdoQuadradoInvisivel = XCaixaTexto
+		inteiro YdoQuadradoInvisivel = YCaixaTexto
+		
+		inteiro velocidadeDoQuadradoEmX = 10
+		inteiro velocidadeDoQuadradoEmY = 0
+
+		inteiro TamanhoDoQuadradoInvisivel = 0
+
+		desenhar_retangulo_texto()
+		desenhar_retangulo_imagem()
+		
+		XdoQuadradoInvisivel = XdoQuadradoInvisivel + velocidadeDoQuadradoEmX
+          YdoQuadradoInvisivel = YdoQuadradoInvisivel + velocidadeDoQuadradoEmY
+
+          	se(XdoQuadradoInvisivel + i + TamanhoDoQuadradoInvisivel / 2 > XCaixaTexto + 25
+             	e YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < YCaixaTexto
+             	e YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > YCaixaTexto)
+           	{
+               	velocidadeDoQuadradoEmX = -velocidadeDoQuadradoEmX
+            	}
+
+            	se (XdoQuadradoInvisivel + i  - TamanhoDoQuadradoInvisivel / 2 < XCaixaTexto + 25
+             	e YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < YCaixaTexto
+             	e YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > YCaixaTexto)
+            	{
+                	velocidadeDoQuadradoEmX = -velocidadeDoQuadradoEmX
+            	}
+
+            	//se (YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > ClientSize.Height / 2)
+            	//{
+               // 	velocidadeDoQuadradoEmY = -velocidadeDoQuadradoEmY
+            	//}
+
+            	//se (YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < -ClientSize.Height / 2)
+            	//{
+               // 	velocidadeDoQuadradoEmY = -velocidadeDoQuadradoEmY
+            	//}
+
+            	//se (XdoQuadradoInvisivel < -ClientSize.Width / 2 ou XdoQuadradoInvisivel > ClientSize.Width / 2)
+            	//{
+               //	XdoQuadradoInvisivel = 0
+               //	YdoQuadradoInvisivel = 0
+            	//}
+
+			g.definir_cor(ColorText)
+    		
+    			inteiro tamanhoTexto = 24
+    			
+        		g.definir_fonte_texto("Alef")
+       		g.definir_estilo_texto(falso, verdadeiro, falso)
+       	
+       		g.definir_tamanho_texto(tamanhoTexto)
+
+				g.desenhar_texto(XCaixaTexto + 20, YCaixaTexto + 65, texto)
+				g.desenhar_texto(XCaixaTexto + 20, YCaixaTexto + 25, texto_linha_1)
+
+
+			inteiro Colisao_caixaX = 950 - i - XCaixaTexto + 478
+			inteiro Tamanho_Linha_caixa = 40
+
+			g.definir_cor(0x000000)
+
+			g.desenhar_retangulo(XdoQuadradoInvisivel + i, YdoQuadradoInvisivel + 60, Colisao_caixaX, Tamanho_Linha_caixa, falso, verdadeiro)
+            	
+            	g.renderizar()
+
+            	u.aguarde(50)
+            	
+		}
+
+	}
+
+	funcao escrever_3(cadeia texto, cadeia texto_linha_2, cadeia texto_linha_1) {
+
+		inteiro LarguraCaixaTexto, AlturaCaixaTexto, XCaixaTexto, YCaixaTexto
+    		inteiro LarguraImagem, AlturaImagem, XImagem, YImagem
+
+    		real posicao_textoX = 0.0
+    		real posicao_textoY = 0.0
+    		
+    		logico CaixaPreenchida, ArredondarPontasCaixa
+
+  			CaixaPreenchida = falso 
+    			ArredondarPontasCaixa = falso
+
+    			LarguraImagem = 960
+    			AlturaImagem = 540
+    			XImagem = (ScreenLenght - LarguraImagem) / 2
+   			YImagem = (ScreenHigh - AlturaImagem) / 2 - 100
+
+    			LarguraCaixaTexto = 960
+    			AlturaCaixaTexto = 150
+    			XCaixaTexto = (ScreenLenght - LarguraCaixaTexto) / 2
+    			YCaixaTexto = YImagem + AlturaImagem + 50
+		
+		para (inteiro i = 0; i < XCaixaTexto + 480; i = i + 25) {
+
+		inteiro XdoQuadradoInvisivel = XCaixaTexto
+		inteiro YdoQuadradoInvisivel = YCaixaTexto
+		
+		inteiro velocidadeDoQuadradoEmX = 10
+		inteiro velocidadeDoQuadradoEmY = 0
+
+		inteiro TamanhoDoQuadradoInvisivel = 0
+
+		desenhar_retangulo_texto()
+		desenhar_retangulo_imagem()
+		
+		XdoQuadradoInvisivel = XdoQuadradoInvisivel + velocidadeDoQuadradoEmX
+          YdoQuadradoInvisivel = YdoQuadradoInvisivel + velocidadeDoQuadradoEmY
+
+          	se(XdoQuadradoInvisivel + i + TamanhoDoQuadradoInvisivel / 2 > XCaixaTexto + 25
+             	e YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < YCaixaTexto
+             	e YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > YCaixaTexto)
+           	{
+               	velocidadeDoQuadradoEmX = -velocidadeDoQuadradoEmX
+            	}
+
+            	se (XdoQuadradoInvisivel + i  - TamanhoDoQuadradoInvisivel / 2 < XCaixaTexto + 25
+             	e YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < YCaixaTexto
+             	e YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > YCaixaTexto)
+            	{
+                	velocidadeDoQuadradoEmX = -velocidadeDoQuadradoEmX
+            	}
+
+            	//se (YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > ClientSize.Height / 2)
+            	//{
+               // 	velocidadeDoQuadradoEmY = -velocidadeDoQuadradoEmY
+            	//}
+
+            	//se (YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < -ClientSize.Height / 2)
+            	//{
+               // 	velocidadeDoQuadradoEmY = -velocidadeDoQuadradoEmY
+            	//}
+
+            	//se (XdoQuadradoInvisivel < -ClientSize.Width / 2 ou XdoQuadradoInvisivel > ClientSize.Width / 2)
+            	//{
+               //	XdoQuadradoInvisivel = 0
+               //	YdoQuadradoInvisivel = 0
+            	//}
+
+			g.definir_cor(ColorText)
+    		
+    			inteiro tamanhoTexto = 24
+    			
+        		g.definir_fonte_texto("Alef")
+       		g.definir_estilo_texto(falso, verdadeiro, falso)
+       	
+       		g.definir_tamanho_texto(tamanhoTexto)
+
+				g.desenhar_texto(XCaixaTexto + 20, YCaixaTexto + 105, texto)
+				g.desenhar_texto(XCaixaTexto + 20, YCaixaTexto + 65, texto_linha_2)
+				g.desenhar_texto(XCaixaTexto + 20, YCaixaTexto + 25, texto_linha_1)
+
+
+			inteiro Colisao_caixaX = 950 - i - XCaixaTexto + 478
+			inteiro Tamanho_Linha_caixa = 30
+
+			g.definir_cor(0x000000)
+
+			g.desenhar_retangulo(XdoQuadradoInvisivel + i, YdoQuadradoInvisivel + 95, Colisao_caixaX, Tamanho_Linha_caixa, falso, verdadeiro)
+            	
+            	g.renderizar()
+
+            	u.aguarde(50)
+            	
+		}
+
+	}
+
+	funcao escreverXXX(cadeia texto_linha_1, cadeia texto_linha_2, cadeia texto_linha_3) {
+
+			escrever_1(texto_linha_1)
+			escrever_2(texto_linha_2, texto_linha_1)
+
+			escrever_3(texto_linha_3, texto_linha_2, texto_linha_1)
+			
+
+    			enquanto (tec.ler_tecla() != tec.TECLA_ENTER) { }
+	}
+
+	funcao escreverXX(cadeia texto_linha_1, cadeia texto_linha_2) {
+		
+			escrever_1(texto_linha_1)
+			escrever_2(texto_linha_2, texto_linha_1)
+
+			enquanto (tec.ler_tecla() != tec.TECLA_ENTER) { }
 	}
 
 	funcao title() //Exibe a Intro do Jogo
@@ -786,7 +908,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 7738; 
+ * @POSICAO-CURSOR = 2313; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
