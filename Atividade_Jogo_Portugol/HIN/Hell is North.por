@@ -19,6 +19,7 @@ programa
 
 	inteiro vetor_quadros[500]
 	cadeia vetorTexto[237]
+	cadeia espaco = "\n"
 	
 	const inteiro ColorBackGround = 0x000000
 	const inteiro ColorText = 0xf3f3f3 //Cores Jogo
@@ -42,106 +43,33 @@ programa
           	
           	g.limpar()
 
-          	g.entrar_modo_tela_cheia()
+          	//g.entrar_modo_tela_cheia()
           	
           	g.liberar_imagem(local_logo)
 
-			cena_menu() 
+			//cena_menu() 
 
-			background_transicao()
+			//background_transicao()
 		
-			rodar_gif_veta()
+			//rodar_gif_veta()
 
-			background_transicao()
+			//background_transicao()
 
-			title()
+			//title()
 
-			background_transicao()
+			//background_transicao()
 
 			desenhar_retangulo_texto()
 			desenhar_retangulo_imagem()
+			g.renderizar()
+			
 			dialogo()
 	}
 
 //COMEÇO DIÁLOGO
 
-	//funcao cadeia dividir_texto(cadeia texto)
-	//{
-    	//	inteiro tamanhoMaximoLinha = 79
-    	//	inteiro contador = 0
+	funcao escrever_1(cadeia texto) {
 
-    		// Percorrer o texto
-    	//		para (inteiro i = 0; i < comprimento(texto); i++)
-    	//		{
-    	//		
-      		// Adicionar o caractere atual ao vetor
-     //   			vetorTexto[contador] = texto
-     //   			contador++
-        
-        			// Quando 79 caracteres forem atingidos, insira uma quebra de linha
-     //  			 se (contador % tamanhoMaximoLinha == 0)
-     //   			{
-     //      			vetorTexto[contador] = "\n" // Quebra de linha
-     //       			contador++ // Avança o contador
-     //  			 }
-       			 
-     //  		retorne vetorTexto[contador]
-       		
-    	//		}
-
-	//}
-
-	funcao desenhar_retangulo_texto() {
-		
-		inteiro LarguraCaixaTexto, AlturaCaixaTexto, XCaixaTexto, YCaixaTexto
-    		inteiro LarguraImagem, AlturaImagem, XImagem, YImagem
-    		
-    		logico CaixaPreenchida, ArredondarPontasCaixa
-
-  			CaixaPreenchida = falso 
-    			ArredondarPontasCaixa = falso
-
-    			LarguraImagem = 960
-    			AlturaImagem = 540
-    			XImagem = (ScreenLenght - LarguraImagem) / 2
-   			YImagem = (ScreenHigh - AlturaImagem) / 2 - 100
-
-    			LarguraCaixaTexto = 960
-    			AlturaCaixaTexto = 150
-    			XCaixaTexto = (ScreenLenght - LarguraCaixaTexto) / 2
-    			YCaixaTexto = YImagem + AlturaImagem + 50
-
-    			g.definir_cor(ColorText) // Cor branca para a borda
-    			g.desenhar_retangulo(XCaixaTexto, YCaixaTexto, LarguraCaixaTexto, AlturaCaixaTexto, ArredondarPontasCaixa, CaixaPreenchida) //Retângulo Texto
-	}
-
-	funcao desenhar_retangulo_imagem() {
-		inteiro LarguraCaixaTexto, AlturaCaixaTexto, XCaixaTexto, YCaixaTexto
-    		inteiro LarguraImagem, AlturaImagem, XImagem, YImagem
-    		
-    		logico CaixaPreenchida, ArredondarPontasCaixa
-
-  			CaixaPreenchida = falso 
-    			ArredondarPontasCaixa = falso
-
-    			LarguraImagem = 960
-    			AlturaImagem = 540
-    			XImagem = (ScreenLenght - LarguraImagem) / 2
-   			YImagem = (ScreenHigh - AlturaImagem) / 2 - 100
-
-    			LarguraCaixaTexto = 960
-    			AlturaCaixaTexto = 150
-    			XCaixaTexto = (ScreenLenght - LarguraCaixaTexto) / 2
-    			YCaixaTexto = YImagem + AlturaImagem + 50
-
-    			g.definir_cor(ColorText) // Cor branca para a borda
-    			g.desenhar_retangulo(XImagem, YImagem, LarguraImagem, AlturaImagem, ArredondarPontasCaixa, CaixaPreenchida) //Retângulo Imagem
-
-
-	}
-
-	funcao dialogo()
-	{
 		inteiro LarguraCaixaTexto, AlturaCaixaTexto, XCaixaTexto, YCaixaTexto
     		inteiro LarguraImagem, AlturaImagem, XImagem, YImagem
 
@@ -162,93 +90,193 @@ programa
     			AlturaCaixaTexto = 150
     			XCaixaTexto = (ScreenLenght - LarguraCaixaTexto) / 2
     			YCaixaTexto = YImagem + AlturaImagem + 50
+		
+		para (inteiro i = 0; i < XCaixaTexto + 480; i = i + 25) {
 
-    			g.desenhar_retangulo(XCaixaTexto, YCaixaTexto, LarguraCaixaTexto, AlturaCaixaTexto, ArredondarPontasCaixa, CaixaPreenchida) //Retângulo Imagem
-    			g.desenhar_retangulo(XImagem, YImagem, LarguraImagem, AlturaImagem, ArredondarPontasCaixa, CaixaPreenchida) //Retângulo Texto
+		inteiro XdoQuadradoInvisivel = XCaixaTexto
+		inteiro YdoQuadradoInvisivel = YCaixaTexto
+		
+		inteiro velocidadeDoQuadradoEmX = 10
+		inteiro velocidadeDoQuadradoEmY = 0
 
-    			g.definir_cor(ColorText) // Cor branca para a borda
+		inteiro TamanhoDoQuadradoInvisivel = 0
 
-		caracter palavra[79]
+		desenhar_retangulo_texto()
+		desenhar_retangulo_imagem()
+		
+		XdoQuadradoInvisivel = XdoQuadradoInvisivel + velocidadeDoQuadradoEmX
+          YdoQuadradoInvisivel = YdoQuadradoInvisivel + velocidadeDoQuadradoEmY
 
-    		cadeia texto = "Pai... Perdoe-me,"
+          	se(XdoQuadradoInvisivel + i + TamanhoDoQuadradoInvisivel / 2 > XCaixaTexto + 25
+             	e YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < YCaixaTexto
+             	e YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > YCaixaTexto)
+           	{
+               	velocidadeDoQuadradoEmX = -velocidadeDoQuadradoEmX
+            	}
+
+            	se (XdoQuadradoInvisivel + i  - TamanhoDoQuadradoInvisivel / 2 < XCaixaTexto + 25
+             	e YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < YCaixaTexto
+             	e YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > YCaixaTexto)
+            	{
+                	velocidadeDoQuadradoEmX = -velocidadeDoQuadradoEmX
+            	}
+
+            	//se (YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > ClientSize.Height / 2)
+            	//{
+               // 	velocidadeDoQuadradoEmY = -velocidadeDoQuadradoEmY
+            	//}
+
+            	//se (YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < -ClientSize.Height / 2)
+            	//{
+               // 	velocidadeDoQuadradoEmY = -velocidadeDoQuadradoEmY
+            	//}
+
+            	//se (XdoQuadradoInvisivel < -ClientSize.Width / 2 ou XdoQuadradoInvisivel > ClientSize.Width / 2)
+            	//{
+               //	XdoQuadradoInvisivel = 0
+               //	YdoQuadradoInvisivel = 0
+            	//}
+
+			g.definir_cor(ColorText)
     		
-    		real tamanhoTexto = 24.0
-
-    	//		enquanto (tamanhoTexto < 100 e vetorTexto[tamanhoTexto] != "")
-    	//		{
-     //  			vetorTexto[tamanhoTexto] = vetorTexto[tamanhoTexto]
-	//     			tamanhoTexto = tamanhoTexto + 1
-    	//		}
-	//
-    	//	escrever_texto_animado(XCaixaTexto + 20, YCaixaTexto + 50, vetorTexto, tamanhoTexto)
-
-		g.definir_cor(ColorText)
-		
-        	g.definir_fonte_texto("Alef")
-       	g.definir_estilo_texto(falso, verdadeiro, falso)
+    			inteiro tamanhoTexto = 24
+    			
+        		g.definir_fonte_texto("Alef")
+       		g.definir_estilo_texto(falso, verdadeiro, falso)
        	
-       	g.definir_tamanho_texto(tamanhoTexto)
-		g.desenhar_texto(XCaixaTexto + 20, YCaixaTexto + 25, texto)
-		posicao_textoX = XCaixaTexto + 20
-		posicao_textoY = YCaixaTexto + 25
+       		g.definir_tamanho_texto(tamanhoTexto)
+       		
+			g.desenhar_texto(XCaixaTexto + 20, YCaixaTexto + 25, texto)
 
-    		g.renderizar()
+			inteiro Colisao_caixaX = 950 - i - XCaixaTexto + 478
+			inteiro Tamanho_Linha_caixa = 50
 
-		u.aguarde(700)
+			g.definir_cor(0xffffff)
 
-		posicao_textoX = posicao_textoX + 75
+			g.desenhar_retangulo(XdoQuadradoInvisivel + i, YdoQuadradoInvisivel + 5, Colisao_caixaX, Tamanho_Linha_caixa, falso, verdadeiro)
+
+			
+            	
 		
-		g.definir_cor(ColorText)
-		
-        	g.definir_fonte_texto("Alef")
-       	g.definir_estilo_texto(falso, verdadeiro, falso)
-		texto = "pois eu pequei." 
-		
-		g.desenhar_texto(posicao_textoX, posicao_textoY, texto)
+            	g.renderizar()
 
-		g.renderizar()
+            	u.aguarde(100)
+            	
+		}
+		
+		enquanto(tec.ler_tecla() != tec.TECLA_ENTER) { }
+	}
+
+	funcao escrever_2(cadeia texto) {
+
+		inteiro LarguraCaixaTexto, AlturaCaixaTexto, XCaixaTexto, YCaixaTexto
+    		inteiro LarguraImagem, AlturaImagem, XImagem, YImagem
+
+    		real posicao_textoX = 0.0
+    		real posicao_textoY = 0.0
+    		
+    		logico CaixaPreenchida, ArredondarPontasCaixa
+
+  			CaixaPreenchida = falso 
+    			ArredondarPontasCaixa = falso
+
+    			LarguraImagem = 960
+    			AlturaImagem = 540
+    			XImagem = (ScreenLenght - LarguraImagem) / 2
+   			YImagem = (ScreenHigh - AlturaImagem) / 2 - 100
+
+    			LarguraCaixaTexto = 960
+    			AlturaCaixaTexto = 150
+    			XCaixaTexto = (ScreenLenght - LarguraCaixaTexto) / 2
+    			YCaixaTexto = YImagem + AlturaImagem + 50
+		
+		para (inteiro i = 0; i < XCaixaTexto + 480; i = i + 25) {
+
+		inteiro XdoQuadradoInvisivel = XCaixaTexto
+		inteiro YdoQuadradoInvisivel = YCaixaTexto
+		
+		inteiro velocidadeDoQuadradoEmX = 10
+		inteiro velocidadeDoQuadradoEmY = 0
+
+		inteiro TamanhoDoQuadradoInvisivel = 0
+
+		desenhar_retangulo_texto()
+		desenhar_retangulo_imagem()
+		
+		XdoQuadradoInvisivel = XdoQuadradoInvisivel + velocidadeDoQuadradoEmX
+          YdoQuadradoInvisivel = YdoQuadradoInvisivel + velocidadeDoQuadradoEmY
+
+          	se(XdoQuadradoInvisivel + i + TamanhoDoQuadradoInvisivel / 2 > XCaixaTexto + 25
+             	e YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < YCaixaTexto
+             	e YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > YCaixaTexto)
+           	{
+               	velocidadeDoQuadradoEmX = -velocidadeDoQuadradoEmX
+            	}
+
+            	se (XdoQuadradoInvisivel + i  - TamanhoDoQuadradoInvisivel / 2 < XCaixaTexto + 25
+             	e YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < YCaixaTexto
+             	e YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > YCaixaTexto)
+            	{
+                	velocidadeDoQuadradoEmX = -velocidadeDoQuadradoEmX
+            	}
+
+            	//se (YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > ClientSize.Height / 2)
+            	//{
+               // 	velocidadeDoQuadradoEmY = -velocidadeDoQuadradoEmY
+            	//}
+
+            	//se (YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < -ClientSize.Height / 2)
+            	//{
+               // 	velocidadeDoQuadradoEmY = -velocidadeDoQuadradoEmY
+            	//}
+
+            	//se (XdoQuadradoInvisivel < -ClientSize.Width / 2 ou XdoQuadradoInvisivel > ClientSize.Width / 2)
+            	//{
+               //	XdoQuadradoInvisivel = 0
+               //	YdoQuadradoInvisivel = 0
+            	//}
+
+			g.definir_cor(ColorText)
+    		
+    			inteiro tamanhoTexto = 24
+    			
+        		g.definir_fonte_texto("Alef")
+       		g.definir_estilo_texto(falso, verdadeiro, falso)
+       	
+       		g.definir_tamanho_texto(tamanhoTexto)
+
+				g.desenhar_texto(XCaixaTexto + 20, YCaixaTexto + 65, texto)
+
+
+			inteiro Colisao_caixaX = 950 - i - XCaixaTexto + 478
+			inteiro Tamanho_Linha_caixa = 40
+
+			g.definir_cor(0xffffff)
+
+			g.desenhar_retangulo(XdoQuadradoInvisivel + i, YdoQuadradoInvisivel + 60, Colisao_caixaX, Tamanho_Linha_caixa, falso, verdadeiro)
+            	
+            	g.renderizar()
+
+            	u.aguarde(50)
+            	
+		}
+		
+		enquanto(tec.ler_tecla() != tec.TECLA_ENTER) { }
+	}
+
+	funcao dialogo()
+	{
+			//inicializar_caixas()
+			
+			escrever_1("Pai... Perdoe-me, pois eu pequei.")
+			escrever_1("Um trovão cai de fundo, a chuva é tão forte e inconcebível que suas pupilas...")
+			escrever_2("estremecem.")
+			u.aguarde(300)
+
+			escrever_2("Sente um calafrio subindo pela coluna.")
 
     			enquanto (tec.ler_tecla() != tec.TECLA_ENTER) { }
 	}
-
-//COMPRIMENTO
-
-	//funcao inteiro comprimento(cadeia texto[])
-	//{
-    	//	inteiro contador = 0
-	//
-    	//		// Contar até encontrar o caractere nulo
-    	//		enquanto (texto[contador] != "\n" e contador < 100) // Limita a 100 para evitar estouro
-    	//		{
-     //   			contador = contador + 1
-    	//		}
-     
-    	//	retorne contador
-	//}
-
-//ANIMAÇÃO
-
-	//funcao escrever_texto_animado(inteiro x, inteiro y, cadeia texto[], inteiro tamanhoTexto)
-	//{
-		
-    	//		g.definir_cor(ColorText)
-    	//		g.definir_fonte_texto("Pixelated") // Fonte pixelada e de tamanho razoável
-
-    	//	cadeia parcial = "" // Inicializa a string parcial
-    	//	inteiro i = 0
-
-    	//		enquanto (i < tamanhoTexto) // Usa o tamanho passado
-    	//		{
-     //   			parcial = parcial + texto[i] // Adiciona o caractere atual
-     //  		 	g.limpar() // Limpa a tela
-     //   			g.desenhar_texto(x, y, parcial)
-     //   			g.renderizar()
-     //   			u.aguarde(IntervaloTexto) // Intervalo de tempo entre cada letra
-     //   			i = i + 1
-    	//		}
-	//}
-
-//FIM DIÁLOGO
 
 	funcao vazio background_transicao(){
 		g.definir_cor(ColorBackGround)
@@ -256,6 +284,35 @@ programa
 		g.renderizar()
 
 		u.aguarde(1500)
+	}
+
+	funcao tempo() { //configura o tempo entre cada cena - script do jogo
+		
+	}
+
+	
+	funcao vazio data() { //vai usar os recursos do computador para puxar a data atual
+		
+	}
+
+	funcao alma() { //se coração partido = morto, senão = vivo 
+		
+	}
+
+	funcao vontade() { //sem vontade não há força
+		
+	}
+
+	funcao memoria() { //você ja veio aqui antes
+		
+	}
+
+	funcao combate() { //Exibe a interface de combate do jogo
+		
+	}
+
+	funcao pertences() { //Exibe a interface inventário do jogo
+		
 	}
 
 	funcao rodar_gif_veta() //Exibe a logo da VETA
@@ -310,33 +367,135 @@ programa
 		enquanto (tec.ler_tecla() != tec.TECLA_ENTER) { }
 	}
 
-	funcao tempo() { //configura o tempo entre cada cena - script do jogo
+	funcao desenhar_retangulo_texto() {
 		
+		inteiro LarguraCaixaTexto, AlturaCaixaTexto, XCaixaTexto, YCaixaTexto
+    		inteiro LarguraImagem, AlturaImagem, XImagem, YImagem
+    		
+    		logico CaixaPreenchida, ArredondarPontasCaixa
+
+  			CaixaPreenchida = falso 
+    			ArredondarPontasCaixa = falso
+
+    			LarguraImagem = 960
+    			AlturaImagem = 540
+    			XImagem = (ScreenLenght - LarguraImagem) / 2
+   			YImagem = (ScreenHigh - AlturaImagem) / 2 - 100
+
+    			LarguraCaixaTexto = 960
+    			AlturaCaixaTexto = 150
+    			XCaixaTexto = (ScreenLenght - LarguraCaixaTexto) / 2
+    			YCaixaTexto = YImagem + AlturaImagem + 50
+
+    			g.definir_cor(ColorText) // Cor branca para a borda
+    			g.desenhar_retangulo(XCaixaTexto, YCaixaTexto, LarguraCaixaTexto, AlturaCaixaTexto, ArredondarPontasCaixa, CaixaPreenchida) //Retângulo Texto
 	}
 
-	
-	funcao vazio data() { //vai usar os recursos do computador para puxar a data atual
-		
+	funcao desenhar_retangulo_imagem() {
+		inteiro LarguraCaixaTexto, AlturaCaixaTexto, XCaixaTexto, YCaixaTexto
+    		inteiro LarguraImagem, AlturaImagem, XImagem, YImagem
+    		
+    		logico CaixaPreenchida, ArredondarPontasCaixa
+
+  			CaixaPreenchida = falso 
+    			ArredondarPontasCaixa = falso
+
+    			LarguraImagem = 960
+    			AlturaImagem = 540
+    			XImagem = (ScreenLenght - LarguraImagem) / 2
+   			YImagem = (ScreenHigh - AlturaImagem) / 2 - 100
+
+    			LarguraCaixaTexto = 960
+    			AlturaCaixaTexto = 150
+    			XCaixaTexto = (ScreenLenght - LarguraCaixaTexto) / 2
+    			YCaixaTexto = YImagem + AlturaImagem + 50
+
+    			g.definir_cor(ColorText) // Cor branca para a borda
+    			g.desenhar_retangulo(XImagem, YImagem, LarguraImagem, AlturaImagem, ArredondarPontasCaixa, CaixaPreenchida) //Retângulo Imagem
+
 	}
 
-	funcao alma() { //se coração partido = morto, senão = vivo 
+	funcao inicializar_caixas() {
 		
-	}
+		inteiro LarguraCaixaTexto, AlturaCaixaTexto, XCaixaTexto, YCaixaTexto
+    		inteiro LarguraImagem, AlturaImagem, XImagem, YImagem
 
-	funcao vontade() { //sem vontade não há força
-		
-	}
+    		real posicao_textoX = 0.0
+    		real posicao_textoY = 0.0
+    		
+    		logico CaixaPreenchida, ArredondarPontasCaixa
 
-	funcao memoria() { //você ja veio aqui antes
-		
-	}
+  			CaixaPreenchida = falso 
+    			ArredondarPontasCaixa = falso
 
-	funcao combate() { //Exibe a interface de combate do jogo
-		
-	}
+    			LarguraImagem = 960
+    			AlturaImagem = 540
+    			XImagem = (ScreenLenght - LarguraImagem) / 2
+   			YImagem = (ScreenHigh - AlturaImagem) / 2 - 100
 
-	funcao pertences() { //Exibe a interface inventário do jogo
+    			LarguraCaixaTexto = 960
+    			AlturaCaixaTexto = 150
+    			XCaixaTexto = (ScreenLenght - LarguraCaixaTexto) / 2
+    			YCaixaTexto = YImagem + AlturaImagem + 50
+
+    			g.desenhar_retangulo(XCaixaTexto, YCaixaTexto, LarguraCaixaTexto, AlturaCaixaTexto, ArredondarPontasCaixa, CaixaPreenchida) //Retângulo Imagem
+    			g.desenhar_retangulo(XImagem, YImagem, LarguraImagem, AlturaImagem, ArredondarPontasCaixa, CaixaPreenchida) //Retângulo Texto
+
+    			g.definir_cor(ColorText) // Cor branca para a borda
+
+    	//		enquanto (tamanhoTexto < 100 e vetorTexto[tamanhoTexto] != "")
+    	//		{
+     //  			vetorTexto[tamanhoTexto] = vetorTexto[tamanhoTexto]
+	//     			tamanhoTexto = tamanhoTexto + 1
+    	//		}
+	//
+    	//	escrever_texto_animado(XCaixaTexto + 20, YCaixaTexto + 50, vetorTexto, tamanhoTexto)
+
+		posicao_textoX = XCaixaTexto + 20
+		posicao_textoY = YCaixaTexto + 25
+
+		para (inteiro i = 0; i <ScreenLenght; i = i + 25) {
+
+		inteiro XdoQuadradoInvisivel = 0
+		inteiro YdoQuadradoInvisivel = 0
 		
+		inteiro velocidadeDoQuadradoEmX = 10
+		inteiro velocidadeDoQuadradoEmY = 0
+
+		inteiro TamanhoDoQuadradoInvisivel = 0
+		
+		desenhar_retangulo_texto()
+		desenhar_retangulo_imagem()
+		
+		XdoQuadradoInvisivel = XdoQuadradoInvisivel + velocidadeDoQuadradoEmX
+          YdoQuadradoInvisivel = YdoQuadradoInvisivel + velocidadeDoQuadradoEmY
+
+            	//se (YdoQuadradoInvisivel + TamanhoDoQuadradoInvisivel / 2 > ClientSize.Height / 2)
+            	//{
+               // 	velocidadeDoQuadradoEmY = -velocidadeDoQuadradoEmY
+            	//}
+
+            	//se (YdoQuadradoInvisivel - TamanhoDoQuadradoInvisivel / 2 < -ClientSize.Height / 2)
+            	//{
+               // 	velocidadeDoQuadradoEmY = -velocidadeDoQuadradoEmY
+            	//}
+
+            	//se (XdoQuadradoInvisivel < -ClientSize.Width / 2 ou XdoQuadradoInvisivel > ClientSize.Width / 2)
+            	//{
+               //	XdoQuadradoInvisivel = 0
+               //	YdoQuadradoInvisivel = 0
+            	//}
+
+			g.definir_cor(ColorText)
+			
+			g.definir_cor(0x000000)
+            	g.desenhar_retangulo(XdoQuadradoInvisivel + i, YdoQuadradoInvisivel + 5, 1920, 1080, falso, verdadeiro)
+		
+            	g.renderizar()
+
+            	u.aguarde(100)
+            	
+		}
 	}
 
 	funcao title() //Exibe a Intro do Jogo
@@ -627,7 +786,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1371; 
+ * @POSICAO-CURSOR = 7738; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
