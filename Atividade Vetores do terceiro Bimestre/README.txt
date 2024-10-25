@@ -1,1 +1,1 @@
-Nessa atividade avaliativa trabalhamos com fuções, matrizes e vetores.
+Nessa atividade avaliativa trabalhamos com funções, matrizes e vetores.
